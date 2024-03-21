@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../core/methods.dart/methods.dart';
+import '../../../../core/utils/functions.dart';
+import '../../../../core/widgets/widgets.dart';
 import '../controllers/employee_controller.dart';
 
 class EmployeeView extends GetView<EmployeeController> {
@@ -51,38 +54,21 @@ class EmployeeView extends GetView<EmployeeController> {
                 const SizedBox(
                   height: 24.0,
                 ),
-                ..._textFormField(
+                ...customTextFormField(
                     label: 'NIP',
                     controller: controller.nipController,
-                    validator: (value) =>
-                        controller.validator('NIP', value ?? '')),
-                ..._textFormField(
+                    validator: (value) => F.validator('NIP', value ?? '')),
+                ...customTextFormField(
                     label: 'Name',
                     controller: controller.nameController,
-                    validator: (value) =>
-                        controller.validator('Name', value ?? '')),
-                ..._textFormField(
+                    validator: (value) => F.validator('Name', value ?? '')),
+                ...customTextFormField(
                     label: 'Email',
                     controller: controller.emailController,
                     marginBottom: 32.0,
-                    validator: (value) =>
-                        controller.validator('Email', value ?? '')),
-                SizedBox(
-                  height: 50.0,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      onPressed: () async {
-                        await controller.addEmployee();
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Get.theme.primaryColor),
-                          foregroundColor: MaterialStatePropertyAll(
-                              Get.theme.colorScheme.onPrimary),
-                          fixedSize: const MaterialStatePropertyAll(
-                              Size.fromWidth(double.infinity))),
-                      child: const Text('Add Employee')),
-                )
+                    validator: (value) => F.validator('Email', value ?? '')),
+                CustomButton(
+                    label: 'Add Employee', onPressed: controller.addEmployee)
               ],
             ),
           ),
@@ -91,24 +77,5 @@ class EmployeeView extends GetView<EmployeeController> {
       isDismissible: false,
       backgroundColor: Get.theme.cardColor,
     );
-  }
-
-  List<Widget> _textFormField(
-      {required TextEditingController controller,
-      String? Function(String?)? validator,
-      required String label,
-      double? marginBottom}) {
-    return [
-      TextFormField(
-          controller: controller,
-          validator: validator,
-          decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(16.0),
-              labelText: label,
-              border: const OutlineInputBorder())),
-      SizedBox(
-        height: marginBottom ?? 20.0,
-      ),
-    ];
   }
 }
