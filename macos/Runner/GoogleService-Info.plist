@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyA0sUi3QufxYdZcxha6-eJjn_i3zlijQKc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>357897641656</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.attendanceApp.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>attendance-app-8afe5</string>
+	<key>STORAGE_BUCKET</key>
+	<string>attendance-app-8afe5.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:357897641656:ios:073a5a9edbeb42bb121e4d</string>
+</dict>
+</plist>
