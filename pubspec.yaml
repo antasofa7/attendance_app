@@ -7,6 +7,7 @@ environment:
 
 dependencies:
   cloud_firestore: ^4.15.9
+  firebase_app_check: ^0.2.1+18
   firebase_auth: ^4.17.9
   firebase_core: ^2.27.1
   firebase_storage: ^11.6.10
