@@ -17,7 +17,7 @@ class F {
       {required String title,
       required String message,
       bool isError = true}) async {
-    await Get.snackbar(title, message,
+    Get.snackbar(title, message,
         colorText: Get.theme.colorScheme.onPrimaryContainer,
         backgroundColor: isError
             ? Get.theme.colorScheme.error

@@ -22,7 +22,18 @@ class LoginController extends GetxController {
         User? user = userCredential.user;
         if (user != null) {
           if (user.emailVerified) {
-            Get.offAllNamed(Routes.HOME);
+            if (passwordController.text == 'rahasia1234') {
+              Get.defaultDialog(
+                  title: 'Change Password.',
+                  middleText: 'Change your current password before login!',
+                  actions: [
+                    ElevatedButton(
+                        onPressed: () => Get.toNamed(Routes.PASSWORD),
+                        child: const Text('Change Password'))
+                  ]);
+            } else {
+              Get.offAllNamed(Routes.HOME);
+            }
           } else {
             Get.defaultDialog(
                 title: 'Unverified Email',
@@ -51,6 +62,9 @@ class LoginController extends GetxController {
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
+          F.alert(
+              title: 'Something went wrong.',
+              message: 'No user found for that email.');
         } else if (e.code == 'wrong-password') {
           F.alert(
               title: 'Something went wrong.',
