@@ -1,4 +1,5 @@
 import 'package:firebase_app_check/firebase_app_check.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -33,10 +34,19 @@ Future<void> main() async {
   );
 
   runApp(
-    GetMaterialApp(
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
+    StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.userChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const MaterialApp(
+                home:
+                    Scaffold(body: Center(child: CircularProgressIndicator())));
+          }
+          return GetMaterialApp(
+            title: "Application",
+            initialRoute: snapshot.data != null ? Routes.HOME : Routes.LOGIN,
+            getPages: AppPages.routes,
+          );
+        }),
   );
 }

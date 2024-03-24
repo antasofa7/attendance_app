@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../../../../core/methods.dart/methods.dart';
 import '../../../../core/utils/functions.dart';
 import '../../../../core/widgets/widgets.dart';
+import '../../../routes/app_pages.dart';
+import '../../password/controllers/password_controller.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -33,10 +35,18 @@ class LoginView extends GetView<LoginController> {
                         validator: (value) =>
                             F.validator('Password', value ?? ''),
                         marginBottom: 32.0),
-                    CustomButton(
-                      label: 'Login',
-                      onPressed: controller.login,
-                    )
+                    Obx(() => CustomButton(
+                          label: controller.isLoading.isTrue
+                              ? 'Loading...'
+                              : 'Login',
+                          onPressed: controller.isLoading.isTrue
+                              ? null
+                              : controller.login,
+                        )),
+                    TextButton(
+                        onPressed: () => Get.to(Routes.LOGIN,
+                            arguments: PasswordType.forgot),
+                        child: const Text('Lupa Password?'))
                   ],
                 ))
           ]),

@@ -1,3 +1,4 @@
+import 'package:attendance_app/app/modules/password/controllers/password_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,8 +14,11 @@ class LoginController extends GetxController {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  var isLoading = false.obs;
+
   Future<void> login() async {
     if (formKey.currentState?.validate() ?? false) {
+      isLoading(true);
       try {
         UserCredential userCredential = await _auth.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
@@ -28,7 +32,8 @@ class LoginController extends GetxController {
                   middleText: 'Change your current password before login!',
                   actions: [
                     ElevatedButton(
-                        onPressed: () => Get.toNamed(Routes.PASSWORD),
+                        onPressed: () => Get.toNamed(Routes.PASSWORD,
+                            arguments: PasswordType.change),
                         child: const Text('Change Password'))
                   ]);
             } else {
@@ -40,7 +45,11 @@ class LoginController extends GetxController {
                 middleText: 'Please verify your email',
                 actions: [
                   OutlinedButton(
-                      onPressed: () => Get.back(), child: const Text('Cancel')),
+                      onPressed: () {
+                        isLoading(false);
+                        Get.back();
+                      },
+                      child: const Text('Cancel')),
                   ElevatedButton(
                       onPressed: () async {
                         try {
@@ -54,6 +63,8 @@ class LoginController extends GetxController {
                           F.alert(
                               title: 'Something went wrong.',
                               message: 'Failed to send verification email.');
+                        } finally {
+                          isLoading(false);
                         }
                       },
                       child: const Text('Resend email'))
@@ -72,6 +83,8 @@ class LoginController extends GetxController {
         }
       } catch (e) {
         F.alert(title: 'Something went wrong', message: e.toString());
+      } finally {
+        isLoading(false);
       }
     }
   }

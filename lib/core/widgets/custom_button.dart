@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 class CustomButton extends StatelessWidget {
   final String label;
-  final void Function() onPressed;
+  final void Function()? onPressed;
 
   const CustomButton({
     super.key,
     required this.label,
-    required this.onPressed,
+    this.onPressed,
   });
 
   @override

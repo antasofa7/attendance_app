@@ -67,8 +67,14 @@ class EmployeeView extends GetView<EmployeeController> {
                     controller: controller.emailController,
                     marginBottom: 32.0,
                     validator: (value) => F.validator('Email', value ?? '')),
-                CustomButton(
-                    label: 'Add Employee', onPressed: controller.addEmployee)
+                Obx(() => CustomButton(
+                      label: controller.isLoading(true)
+                          ? 'Loading...'
+                          : 'Add Employee',
+                      onPressed: controller.isLoading.isTrue
+                          ? null
+                          : controller.checkAdminCredential,
+                    ))
               ],
             ),
           ),
