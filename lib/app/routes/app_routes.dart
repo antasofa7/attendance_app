@@ -9,6 +9,8 @@ abstract class Routes {
   static const EMPLOYEE = _Paths.EMPLOYEE;
   static const LOGIN = _Paths.LOGIN;
   static const PASSWORD = _Paths.PASSWORD;
+  static const PROFILE = _Paths.PROFILE;
+  static const UPDATE_PROFILE = _Paths.UPDATE_PROFILE;
 }
 
 abstract class _Paths {
@@ -17,4 +19,6 @@ abstract class _Paths {
   static const EMPLOYEE = '/employee';
   static const LOGIN = '/login';
   static const PASSWORD = '/password';
+  static const PROFILE = '/profile';
+  static const UPDATE_PROFILE = '/update-profile';
 }

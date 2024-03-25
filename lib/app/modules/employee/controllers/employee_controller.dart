@@ -52,6 +52,7 @@ class EmployeeController extends GetxController {
             'name': nameController.text,
             'email': emailController.text,
             'uid': uid,
+            'role': 'employee',
             'createdAt': DateTime.now().toIso8601String()
           }).then((_) {
             nipController.text = '';

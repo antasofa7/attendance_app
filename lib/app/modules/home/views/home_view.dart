@@ -17,7 +17,7 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
         actions: [
           IconButton(
-              onPressed: () => Get.to(Routes.EMPLOYEE),
+              onPressed: () => Get.to(Routes.PROFILE),
               icon: const Icon(Icons.people))
         ],
       ),
